@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cybersecurity Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ===== HACKER BACKGROUND ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #e6edf3;
+    background: black;
+    overflow-x: hidden;
+}
+
+/* animated matrix effect */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* ===== HEADER ===== */
+header {
+    text-align: center;
+    padding: 30px;
+    background: rgba(0,0,0,0.7);
+}
+
+h1 {
+    color: #00ff99;
+}
+
+/* NAV */
+nav a {
+    color: #58a6ff;
+    margin: 10px;
+    text-decoration: none;
+}
+
+/* SECTION */
+section {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+}
+
+/* CARDS */
+.card {
+    background: rgba(22,27,34,0.9);
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+
+/* PROFILE PIC */
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #00ff99;
+    object-fit: cover;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #00ff99;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* PROJECT GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+img.project {
+    width: 100%;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header>
+    <img src="Akimana.jpeg" class="profile-pic">
+    <h1>Akimana Joseline</h1>
+    <p>Cybersecurity | Network Operations | Security Analyst</p>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#pitch">Elevator Pitch</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="about">
+<h2>About Me</h2>
+<div class="card">
+<p>
+Cybersecurity learner with experience in network troubleshooting, system monitoring,
+and security operations. Passionate about protecting digital systems and solving technical problems.
+</p>
+</div>
+</section>
+
+<section id="pitch">
+<h2>View My Elevator Pitch o</h2>
+<div class="card">
+
+<!-- VIDEO -->
+<video width="100%" controls>
+    <source src="pitch.mp4" type="video/mp4">
+</video>
+
+<p>Upload your elevator pitch video above.</p>
+
+</div>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<div class="card">
+<ul>
+<li>Networking (DNS, DHCP, LAN/WAN)</li>
+<li>Cybersecurity Fundamentals</li>
+<li>NOC Monitoring</li>
+<li>Linux & Windows Systems</li>
+<li>Troubleshooting & Performance Optimization</li>
+</ul>
+</div>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="project1.png" class="project">
+<p>Network Troubleshooting Lab</p>
+</div>
+
+<div class="card">
+<img src="project2.png" class="project">
+<p>Security Monitoring Dashboard</p>
+</div>
+
+<div class="card">
+<img src="project3.png" class="project">
+<p>Portfolio Website Deployment</p>
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<div class="card">
+
+<p>Email: Akimjosy1@gmail.com</p>
+
+<!-- LINKEDIN -->
+<p>
+<a class="btn" href="https://linkedin.com/in/yourprofile" target="_blank">
+LinkedIn Profile
+</a>
+</p>
+
+<!-- GOOGLE SITE -->
+<p>
+<a class="btn" href="https://sites.google.com/view/your-site" target="_blank">
+Google Site
+</a>
+</p>
+
+<!-- CV DOWNLOAD -->
+<p>
+<a class="btn" href="cv.pdf" download>
+Download My CV
+</a>
+</p>
+
+</div>
+</section>
+
+<script>
+/* ===== MATRIX RAIN ANIMATION ===== */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+let letters = "01";
+letters = letters.split("");
+
+let fontSize = 14;
+let columns = canvas.width / fontSize;
+
+let drops = [];
+for (let x = 0; x < columns; x++)
+    drops[x] = 1;
+
+function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff99";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        let text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 35);
+</script>
+
+</body>
+</html>
